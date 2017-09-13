@@ -1,0 +1,32 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- 数据源 -->
+	<bean name="datasource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="url" value="${jdbc_url}" />
+		<property name="username" value="${jdbc_username}" />
+		<property name="password" value="${jdbc_password}" />
+		<property name="driverClassName" value="${jdbc_driver}" />
+	</bean>
+	
+	<!-- mybatis sqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<property name="datasource" ref="datasource" />
+	<!-- mybatis mapper文件位置 -->
+	<property name="mapper" value="classpath:mapper/*.xml"/>
+	</bean>
+	<!-- 自动扫描创建mapper bean -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<!-- 映射实体类 -->
+	<property name="basePackage" value="com.min.mapper"></property>
+	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+	</bean>
+</beans>
