@@ -19,14 +19,14 @@
 	
 	<!-- mybatis sqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="datasource" ref="datasource" />
+	<property name="dataSource" ref="datasource" />
 	<!-- mybatis mapper文件位置 -->
-	<property name="mapper" value="classpath:mapper/*.xml"/>
+	<property name="mapperLocations" value="classpath:mapper/*.xml"/>
 	</bean>
 	<!-- 自动扫描创建mapper bean -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	<!-- 映射实体类 -->
-	<property name="basePackage" value="com.min.mapper"></property>
+	<property name="basePackage" value="com.min.dao"></property>
 	<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 </beans>

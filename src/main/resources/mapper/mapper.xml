@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.min.dao.StudentDao">
+
+	<insert id="saveStudent" parameterType="com.min.model.Student">
+		insert into student
+		values
+		(#{id},#{name},#{age},#{gender})
+	</insert>
+
+	<select id="login" parameterType="com.min.model.User"
+		resultType="com.min.model.User">
+		select * from tb_user where name= #{name} and
+		pwd = #{pwd}
+	</select>
+
+	<select id="getAllUser" resultType="com.min.model.User">select * from tb_user
+	</select>
+</mapper>
